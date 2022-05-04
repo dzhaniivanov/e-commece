@@ -14,21 +14,57 @@ export default class ShoppingCart extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container-fluid">
         <h4>ShoppingCart</h4>
-        <div>
+        <div className="row">
           {this.state.products.map((product) => {
             return (
               <Product
                 key={product.id}
-                id={product.id}
-                productName={product.productName}
-                price={product.price}
-              />
+                product={product}
+                onIncrement={this.handleIncrement}
+                onDecrement={this.handleDecrement}
+                onDelete={this.handleDelete}
+              >
+                <button className="btn btn-primary">buy now</button>
+              </Product>
             );
           })}
         </div>
       </div>
     );
   }
+
+  handleIncrement = (product, maxValue) => {
+    let allProducts = [...this.state.products];
+    let index = allProducts.indexOf(product);
+    if (allProducts[index].quantity < maxValue) {
+      allProducts[index].quantity += 1;
+      this.setState({
+        products: allProducts,
+      });
+    }
+  };
+
+  handleDecrement = (product, minValue) => {
+    let allProducts = [...this.state.products];
+    let index = allProducts.indexOf(product);
+
+    if (allProducts[index].quantity > minValue) {
+      allProducts[index].quantity -= 1;
+      this.setState({
+        products: allProducts,
+      });
+    }
+  };
+
+  handleDelete = (product) => {
+    let allProducts = [...this.state.products];
+    let index = allProducts.indexOf(product);
+
+    allProducts.splice(index, 1);
+    this.setState({
+      products: allProducts,
+    });
+  };
 }
