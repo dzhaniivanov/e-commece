@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-export default class MainContent extends Component {
+export default class CustomersList extends Component {
   state = {
     pageTitle: "Customers",
     customersCount: 5,
@@ -44,12 +44,6 @@ export default class MainContent extends Component {
       },
     ],
   };
-/* 
-  customerNameStyle = (customerName) => {
-    if (customerName.startsWith("s")) return { backgroundColor: "green" };
-    else if (customerName.startstWith("b")) return { backgroundColor: "red" };
-    else return {};
-  }; */
 
   render() {
     return (
@@ -91,18 +85,34 @@ export default class MainContent extends Component {
   };
 
   getCustomerRow = () => {
-    return this.state.customers.map((customer) => {
+    return this.state.customers.map((customer, index) => {
       return (
         <tr key={customer.id}>
           <td>{customer.id}</td>
           <td>
             <img src={customer.photo} alt="customer" />
+            <div>
+              <button
+                className="btn btn-sm btn-secondary"
+                onClick={() => {
+                  this.onChangePictureClick(customer, index);
+                }}
+              >
+                change picture
+              </button>
+            </div>
           </td>
-          <td >{customer.name}</td>
+          <td>{customer.name}</td>
           <td>{this.getPhoneToRender(customer.phone)}</td>
           <td>{customer.address.city}</td>
         </tr>
       );
     });
+  };
+
+  onChangePictureClick = (customer, index) => {
+    let customerArr = this.state.customers;
+    customerArr[index].photo = "https://picsum.photos/id/104/60";
+    this.setState({ customers: customerArr });
   };
 }
