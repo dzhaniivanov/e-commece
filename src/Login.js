@@ -42,12 +42,16 @@ export default class Login extends Component {
     );
   }
 
-  onLoginClick = () => {
-    console.log(this.state);
-    if (
-      this.state.email === "admin@gmail.com" &&
-      this.state.password === "admin123"
-    ) {
+  onLoginClick = async () => {
+
+    const response = await fetch(
+      `http://localhost:3000/users?email=${this.state.email}&password=${this.state.password}`
+    );
+
+    const result = await response.json();
+    console.log(result)
+
+    if (result.length>0) {
       this.setState({
         message: <span className="text-success">successfully loggedin</span>,
       });

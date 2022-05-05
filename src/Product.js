@@ -3,14 +3,14 @@ import { Component } from "react";
 export default class Product extends Component {
   constructor(props) {
     super(props);
-    console.log("constructor-product");
+    // console.log("constructor-product");
     this.state = {
       product: this.props.product,
     };
   }
 
   render() {
-    console.log("render-product");
+    // console.log("render-product");
 
     return (
       <div className="col-lg-6">
@@ -60,15 +60,15 @@ export default class Product extends Component {
   }
 
   componentDidMount() {
-    console.log("didMount-product");
+    // console.log("didMount-product");
   }
 
 
   componentDidUpdate() {
-    console.log("didUpdate-product");
+    // console.log("didUpdate-product");
   }
 
   componentWillUnmount() {
-    console.log("unmount-product");
+    // console.log("unmount-product");
   }
 }

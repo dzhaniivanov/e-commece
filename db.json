@@ -10,5 +10,9 @@
     { "id": 3, "productName": "iPad Pro", "price": 3200, "quantity": 0 },
     { "id": 4, "productName": "xbox", "price": 3232, "quantity": 0 },
     { "id": 5, "productName": "Dell Monitor", "price": 500, "quantity": 0 }
+  ],
+  "users": [
+    { "id": 1, "email": "scott@gmail.com", "password": "scott123" },
+    { "id": 2, "email": "john@gmail.com", "password": "john123" }
   ]
 }
