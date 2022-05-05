@@ -5,7 +5,7 @@ export default class Product extends Component {
     super(props);
     console.log("constructor-product");
     this.state = {
-      product: this.props.prouct,
+      product: this.props.product,
     };
   }
 

@@ -3,21 +3,15 @@ import Product from "./Product";
 
 export default class ShoppingCart extends Component {
   constructor(props) {
-    console.log("constructor-shoppingcart");
+    // console.log("constructor-shoppingcart");
     super(props);
     this.state = {
-      products: [
-        { id: 1, productName: "iPhone", price: 1000, quantity: 0 },
-        // { id: 2, productName: "Samsung QLEED TV", price: 2000, quantity: 0 },
-        // { id: 3, productName: "iPad Pro", price: 3200, quantity: 0 },
-        // { id: 4, productName: "xbox", price: 3232, quantity: 0 },
-        // { id: 5, productName: "Dell Monitor", price: 500, quantity: 0 },
-      ],
+      products: [],
     };
   }
 
   render() {
-    console.log("render-shoppingcart");
+    // console.log("render-shoppingcart");
 
     return (
       <div className="container-fluid">
@@ -43,26 +37,33 @@ export default class ShoppingCart extends Component {
 
   //executes after constructor and render medthod
   componentDidMount() {
-    console.log("didmount-shoppingcart");
+    // console.log("didmount-shoppingcart");
+    fetch("http://localhost:3000/products")
+    .then((response) => {
+      response.json()
+      .then((fetchProducts) => {
+        this.setState({products:fetchProducts})
+      });
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(
-      "updated-shoppingcart",
-      prevProps,
-      prevState,
-      this.props,
-      this.state
-    );
+    // console.log(
+    //   "updated-shoppingcart",
+    //   prevProps,
+    //   prevState,
+    //   this.props,
+    //   this.state
+    // );
   }
 
   componentWillUnmount() {
-    console.log("unmount");
+    // console.log("unmount");
   }
 
   componentDidCatch(error, info) {
-    console.log("didCatch");
-    console.log(error, info);
+    // console.log("didCatch");
+    // console.log(error, info);
 
     localStorage.lastError = `${error}\n${JSON.stringify(info)}`;
   }
